@@ -28,8 +28,13 @@ Phillip Ball
             <repeat group="{{@checkboxes}}" value="{{@box}}">
                 <label class="d-block"><input type="checkbox" name="boxes[]" value="{{@box}}"> {{@box}}</label>
             </repeat>
+
             <button type="submit">Submit</button>
         </form>
+
+        <check if="{{isset(@errors['nameOrBoxes'])}}">
+            <span class="err">{{@errors['nameOrBoxes']}}</span>
+        </check>
     </div> <!-- Container END -->
 
     <!-- Optional JavaScript -->

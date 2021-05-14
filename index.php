@@ -32,11 +32,19 @@ $f3->route('GET|POST /survey', function ($f3){
 
     // if the form has been submitted, add data to session and send user to summary
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        // save the data in the session
-        $_SESSION['boxes'] = $_POST['boxes'];
-        $_SESSION['name'] = $_POST['name'];
+        if(!empty($_POST['boxes']) && !empty($_POST['name'])) {
+            // save the data in the session
+            $_SESSION['boxes'] = $_POST['boxes'];
+            $_SESSION['name'] = $_POST['name'];
+        }
+        else{
+            $f3->set('errors["nameOrBoxes"]', 'Both name and at least 1 checkbox is required.');
+        }
 
-        header('location: summary');
+        // if there are no errors, redierct
+        if(empty($f3->get('errors'))) {
+            header('location: summary');
+        }
     }
 
     // add the user data to the hive
