@@ -26,7 +26,9 @@ Phillip Ball
             <br>
             <p>Check all that apply:</p>
             <repeat group="{{@checkboxes}}" value="{{@box}}">
-                <label class="d-block"><input type="checkbox" name="boxes[]" value="{{@box}}"> {{@box}}</label>
+                <label class="d-block"><input type="checkbox" name="boxes[]" value="{{@box}}"
+                    <check if="{{ in_array(@box, @userChecked)}}">checked="checked"</check>
+                > {{@box}}</label>
             </repeat>
 
             <button type="submit">Submit</button>

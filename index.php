@@ -29,9 +29,16 @@ $f3->route('GET|POST /survey', function ($f3){
 
     // the checkboxes
     $checkboxes = array("This midterm is easy", "I like midterms", "Today is Monday");
+    $userChecked = array();
 
     // if the form has been submitted, add data to session and send user to summary
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        if(!empty($_POST['boxes'])) {
+            // get user input
+            $userChecked = $_POST['boxes'];
+        }
+
         if(!empty($_POST['boxes']) && !empty($_POST['name'])) {
             // save the data in the session
             $_SESSION['boxes'] = $_POST['boxes'];
@@ -49,6 +56,7 @@ $f3->route('GET|POST /survey', function ($f3){
 
     // add the user data to the hive
     $f3->set('checkboxes', $checkboxes);
+    $f3->set('userChecked', $userChecked);
     $f3->set('name', $_POST['name']);
 
     // display the page
