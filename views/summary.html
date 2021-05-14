@@ -1,5 +1,5 @@
 <!--
-328/midtermSurvey/views/survey.html
+328/midtermSurvey/views/summary.html
 Phillip Ball
 05/14/2021
 
@@ -21,15 +21,9 @@ Phillip Ball
     <!-- Container -->
     <div class="container">
         <h1>Midterm Survey</h1>
-        <form action="#" method="post">
-            <label>Name <input type="text" name="name" value="{{@name}}"></label>
-            <br>
-            <p>Check all that apply:</p>
-            <repeat group="{{@checkboxes}}" value="{{@box}}">
-                <label class="d-block"><input type="checkbox" name="boxes[]" value="{{@box}}"> {{@box}}</label>
-            </repeat>
-            <button type="submit">Submit</button>
-        </form>
+        <h2>Thank you for taking the survey, {{@SESSION.name}}!</h2>
+        <h2>Your Answers:</h2>
+        <p>{{@SESSION.boxes}}</p>
     </div> <!-- Container END -->
 
     <!-- Optional JavaScript -->

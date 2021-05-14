@@ -24,23 +24,37 @@ $f3->route('GET /', function (){
 
 // survey
 $f3->route('GET|POST /survey', function ($f3){
+    // reinitialize session array
+    $_SESSION = array();
+
     // the checkboxes
-    $userBoxes = array("This midterm is easy", "I like midterms", "Today is Monday");
+    $checkboxes = array("This midterm is easy", "I like midterms", "Today is Monday");
 
     // if the form has been submitted, add data to session and send user to summary
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        // save the checked checkboxes in the session
+        // save the data in the session
         $_SESSION['boxes'] = $_POST['boxes'];
+        $_SESSION['name'] = $_POST['name'];
 
         header('location: summary');
     }
 
     // add the user data to the hive
-    $f3->set('userBoxes', $userBoxes);
+    $f3->set('checkboxes', $checkboxes);
+    $f3->set('name', $_POST['name']);
 
     // display the page
     $view = new Template();
     echo $view->render('views/survey.html');
+});
+
+// summary
+$f3->route('GET /summary', function (){
+    $_SESSION['boxes'] = implode(", ", $_SESSION['boxes']);
+
+    // display the page
+    $view = new Template();
+    echo $view->render('views/summary.html');
 });
 
 // run Fat-Free
