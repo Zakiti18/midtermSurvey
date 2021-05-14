@@ -1,0 +1,12 @@
+{
+  "name": "philball/328/midtermSurvey",
+  "authors": [
+    {
+      "name": "Phillip Ball",
+      "email": "pball@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
